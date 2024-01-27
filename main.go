@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
@@ -14,13 +16,24 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 
 func snippetView(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Display a specific snippet...\n"))
+	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	if err != nil || id < 1 {
+		http.NotFound(w, r)
+		return
+	}
+	fmt.Fprintf(w, "Display a specific snippet with ID %d...\n", id)
 }
 
 func snippetCreate(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		w.WriteHeader(http.StatusMethodNotAllowed)
-		w.Write([]byte(http.StatusText(http.StatusMethodNotAllowed)))
+		w.Header().Set("Allow", http.MethodPost) // customize header
+		// w.WriteHeader(http.StatusMethodNotAllowed)
+		// w.Write([]byte(http.StatusText(http.StatusMethodNotAllowed)))
+		http.Error(
+			w,
+			http.StatusText(http.StatusMethodNotAllowed),
+			http.StatusMethodNotAllowed,
+		) // shortcut to send non 200 response with a plain text response body
 		return
 	}
 	w.Write([]byte("Create a new snippet...\n"))
