@@ -1,0 +1,19 @@
+{{define "title"}}Snippet #{{.Snippet.ID}}{{end}}
+
+{{define "main"}}
+{{with .Snippet}}
+<div class="flex flex-col space-y-2">
+  <div class="flex bg-zinc-800 p-3 items-center justify-between">
+    <strong>{{.Title}}</strong>
+    <span class="text-zinc-400">#{{.ID}}</span>
+  </div>
+  <pre class="bg-zinc-700 text-left p-2">
+    <code>{{.Content}}</code>
+  </pre>
+  <div class="flex items-center justify-between p-3 bg-zinc-800 text-zinc-400">
+    <time>Created: {{.Created}}</time>
+    <time>Expires: {{.Expires}}</time>
+  </div>
+</div>
+{{end}}
+{{end}}
