@@ -11,8 +11,8 @@
     <code>{{.Content}}</code>
   </pre>
   <div class="flex items-center justify-between p-3 bg-zinc-800 text-zinc-400">
-    <time>Created: {{.Created}}</time>
-    <time>Expires: {{.Expires}}</time>
+    <time>Created: {{humanDate .Created}}</time>
+    <time>Expires: {{humanDate .Expires}}</time>
   </div>
 </div>
 {{end}}
