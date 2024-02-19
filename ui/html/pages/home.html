@@ -1,6 +1,4 @@
-{{define "title"}}Home{{end}}
-
-{{define "main"}}
+{{define "title"}}Home{{end}} {{define "main"}}
 <h2 class="text-2xl font-bold mb-4">Latest Snippets</h2>
 {{if .Snippets}}
 <table class="w-full">
@@ -11,7 +9,9 @@
   </tr>
   {{range .Snippets}}
   <tr class="bg-zinc-700">
-    <td class="p-2 text-left"><a href="/snippet/view?id={{.ID}}">{{.Title}}</a></td>
+    <td class="p-2 text-left">
+      <a href="/snippet/view/{{.ID}}">{{.Title}}</a>
+    </td>
     <td class="p-2 text-center">{{humanDate .Created}}</td>
     <td class="p-2 text-right">#{{.ID}}</td>
   </tr>
@@ -19,5 +19,4 @@
 </table>
 {{else}}
 <p class="text-2xl font-bold">There's nothing to see here yet!</p>
-{{end}}
-{{end}}
+{{end}} {{end}}
