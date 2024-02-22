@@ -29,18 +29,16 @@
   </head>
 
   <body class="container">
-    <div>
-      <header>
-        <h1>
-          <a href="/">Snippetbox</a>
-        </h1>
-        {{template "nav" .}}
-      </header>
-      <main>{{template "main" .}}</main>
-      <footer>
-        Powered by <a href="https://go.dev">Go</a> in {{.CurrentYear}}
-      </footer>
-    </div>
+    <header>
+      <h1>
+        <a href="/">Snippetbox</a>
+      </h1>
+      {{template "nav" .}}
+    </header>
+    <main>{{template "main" .}}</main>
+    <footer>
+      Powered by <a href="https://go.dev">Go</a> in {{.CurrentYear}}
+    </footer>
   </body>
 </html>
 {{end}}
