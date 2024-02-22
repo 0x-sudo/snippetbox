@@ -1,32 +1,46 @@
 {{define "base"}}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <title>{{template "title" .}} | Snippetbox</title>
+    <style>
+      :root {
+        font-family: Inter, sans-serif;
+        font-feature-settings:
+          "liga" 1,
+          "calt" 1;
+        /* fix for Chrome */
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://rsms.me/" />
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-  <link rel="stylesheet" href="/static/css/reset.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script>
-  <title>{{template "title" .}} | Snippetbox</title>
-</head>
+      @supports (font-variation-settings: normal) {
+        :root {
+          font-family: InterVariable, sans-serif;
+        }
+      }
+    </style>
+  </head>
 
-<body class="bg-dark-900 text-white">
-  <div class="max-w-4xl mx-auto p-6 lg:px-0">
-    <header class="flex items-center justify-between w-full">
-      <h1 class="text-3xl font-extrabold">
-        <a href="/">Snippetbox</a>
-      </h1>
-      {{template "nav" .}}
-    </header>
-    <main class="mt-5 lg:mt-20">
-      {{template "main" .}}
-    </main>
-    <footer class="absolute bottom-6 text-dark-200 text-sm">Powered by <a href="https://go.dev">Go</a> in
-      {{.CurrentYear}}</footer>
-  </div>
-</body>
-
+  <body class="container">
+    <div>
+      <header>
+        <h1>
+          <a href="/">Snippetbox</a>
+        </h1>
+        {{template "nav" .}}
+      </header>
+      <main>{{template "main" .}}</main>
+      <footer>
+        Powered by <a href="https://go.dev">Go</a> in {{.CurrentYear}}
+      </footer>
+    </div>
+  </body>
 </html>
 {{end}}
