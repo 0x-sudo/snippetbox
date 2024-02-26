@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
@@ -15,7 +17,12 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 // Add a snippetView handler function.
 func snippetView(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Display a specific snippet..."))
+	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	if err != nil {
+		http.NotFound(w, r)
+		return
+	}
+	fmt.Fprintf(w, "Displaying a specific snippet with ID %d...", id)
 }
 
 // Add a snippetCreate handler function.
