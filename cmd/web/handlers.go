@@ -3,12 +3,11 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 	"strconv"
 )
 
-func home(w http.ResponseWriter, r *http.Request) {
+func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
@@ -22,7 +21,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 	ts, err := template.ParseFiles(files...)
 	if err != nil {
-		log.Print(err.Error())
+		app.logger.Error(err.Error(), "method", r.Method, "uri", r.URL.RequestURI())
 		http.Error(
 			w,
 			http.StatusText(http.StatusInternalServerError),
@@ -33,7 +32,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 	err = ts.ExecuteTemplate(w, "base", nil)
 	if err != nil {
-		log.Print(err.Error())
+		app.logger.Error(err.Error(), "method", r.Method, "uri", r.URL.RequestURI())
 		http.Error(
 			w,
 			http.StatusText(http.StatusInternalServerError),
@@ -43,7 +42,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 
 // Add a snippetView handler function.
-func snippetView(w http.ResponseWriter, r *http.Request) {
+func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
 	if err != nil {
 		http.NotFound(w, r)
@@ -53,7 +52,7 @@ func snippetView(w http.ResponseWriter, r *http.Request) {
 }
 
 // Add a snippetCreate handler function.
-func snippetCreate(w http.ResponseWriter, r *http.Request) {
+func (app *application) snippetCreate(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		w.Header().Set("Allow", http.MethodPost)
 		// w.WriteHeader(http.StatusMethodNotAllowed)
