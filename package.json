@@ -1,0 +1,15 @@
+{
+  "name": "snippetbox",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "dev": "tailwindcss -i ./ui/static/css/main.css -o ./ui/static/css/tailwind.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
