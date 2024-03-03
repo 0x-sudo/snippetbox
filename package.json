@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "tailwindcss -i ./ui/static/css/main.css -o ./ui/static/css/tailwind.css --watch"
+    "build": "tailwindcss -i ./ui/static/css/main.css -o ./ui/static/css/tailwind.css"
   },
   "keywords": [],
   "author": "",
