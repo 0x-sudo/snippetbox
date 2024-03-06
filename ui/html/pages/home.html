@@ -1,4 +1,22 @@
 {{define "title"}}Home{{end}} {{define "main"}}
-<h2>Latest Snippets</h2>
-<p>There's nothing to see here yet!</p>
-{{end}}
+<h2 class="text-xl font-bold">Latest Snippets</h2>
+{{if .Snippets}}
+<table class="border border-zinc-700 w-full mt-6">
+  <tr class="bg-zinc-700 w-full">
+    <th class="p-4 text-left">Title</th>
+    <th class="p-4 text-left">Created</th>
+    <th class="p-4 text-left">ID</th>
+  </tr>
+  {{range .Snippets}}
+  <tr>
+    <td class="text-left p-2">
+      <a href="/snippet/view?id={{.ID}}">{{.Title}}</a>
+    </td>
+    <td class="text-left p-2">{{.Created}}</td>
+    <td class="text-left p-2">#{{.ID}}</td>
+  </tr>
+  {{end}}
+</table>
+{{else}}
+<p>There's nothing to see here... yet!</p>
+{{end}} {{end}}
