@@ -7,8 +7,8 @@
   </div>
   <pre class="p-4"><code>{{.Content}}</code></pre>
   <div class="flex justify-between w-full bg-zinc-700 p-4 items-center">
-    <time>Created: {{.Created}}</time>
-    <time>Expires: {{.Expires}}</time>
+    <time>Created: {{humanDate .Created}}</time>
+    <time>Expires: {{humanDate .Expires}}</time>
   </div>
 </div>
 {{end}} {{end}}
