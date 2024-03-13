@@ -8,9 +8,8 @@ import (
 	"net/http"
 	"os"
 
-	_ "github.com/go-sql-driver/mysql"
-
 	"github.com/0x-sudo/snippetbox/internal/models"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type application struct {
@@ -37,20 +36,17 @@ func main() {
 	templateCache, err := newTemplateCache()
 
 	app := &application{
-		logger: logger,
-		snippets: &models.SnippetModel{
-			DB: db,
-		},
+		logger:        logger,
+		snippets:      &models.SnippetModel{DB: db},
 		templateCache: templateCache,
 	}
 
-	logger.Info("Starting server on %s", slog.String("addr", *addr))
+	logger.Info("Starting server", "addr", *addr)
 
 	err = http.ListenAndServe(*addr, app.routes())
-	if err != nil {
-		logger.Error(err.Error())
-		os.Exit(1)
-	}
+
+	logger.Error(err.Error())
+	os.Exit(1)
 }
 
 func openDB(dsn string) (*sql.DB, error) {

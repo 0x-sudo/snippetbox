@@ -33,9 +33,8 @@ func (app *application) render(
 	data templateData,
 ) {
 	ts, ok := app.templateCache[page]
-
 	if !ok {
-		err := fmt.Errorf("The template %s does not exists", page)
+		err := fmt.Errorf("the template %s does not exists", page)
 		app.serverError(w, r, err)
 		return
 	}
@@ -45,6 +44,7 @@ func (app *application) render(
 	err := ts.ExecuteTemplate(buf, "base", data)
 	if err != nil {
 		app.serverError(w, r, err)
+		return
 	}
 
 	w.WriteHeader(status)

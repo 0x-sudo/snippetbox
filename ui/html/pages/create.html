@@ -1,21 +1,81 @@
-{{define "title"}}Create a new Snippet{{end}} {{define "main"}}
-<form action="/snippet/create" method="POST">
-  <div>
-    <label>Title</label>
-    <input type="text" name="title" />
+{{define "title"}}Create a new snippet{{end}} {{define "main"}}
+<form
+  action="/snippet/create"
+  method="post"
+  class="flex flex-col space-y-4 max-w-sm w-full"
+>
+  <div class="flex flex-col space-y-1">
+    <label for="title">Title</label>
+    {{with .Form.FieldErrors.title}}
+    <label class="text-red-500 text-sm">{{.}}</label>
+    {{end}}
+    <input
+      type="text"
+      name="title"
+      class="bg-zinc-800 rounded text-white"
+      value="{{.Form.Title}}"
+    />
   </div>
-  <div>
-    <label>Content</label>
-    <textarea name="content"></textarea>
+  <div class="flex flex-col space-y-1">
+    <label for="content">Content</label>
+    {{with .Form.FieldErrors.content}}
+    <label class="text-red-500 text-sm">{{.}}</label>
+    {{end}}
+    <textarea name="content" class="bg-zinc-800 rounded text-white">
+{{.Form.Content}}</textarea
+    >
   </div>
+  <fieldset class="flex space-x-3">
+    <legend>Delete in:</legend>
+    {{with .Form.FieldErrors.expires}}
+    <label class="text-red-500 text-sm">{{.}}</label>
+    {{end}}
+    <div>
+      <input
+        type="radio"
+        name="expires"
+        value="365"
+        id="year"
+        {{if
+        (eq
+        .Form.Expires
+        365)}}checked{{end}}
+      />
+      <label for="year">One Year</label>
+    </div>
+    <div>
+      <input
+        type="radio"
+        name="expires"
+        value="7"
+        id="week"
+        {{if
+        (eq
+        .Form.Expires
+        7)}}checked{{end}}
+      />
+      <label for="week">One Week</label>
+    </div>
+    <div>
+      <input
+        type="radio"
+        name="expires"
+        value="7"
+        id="day"
+        {{if
+        (eq
+        .Form.Expires
+        1)}}checked{{end}}
+      />
+      <label for="day">One Day</label>
+    </div>
+  </fieldset>
   <div>
-    <label>Delete in:</label>
-    <input type="radio" name="expires" value="365" checked /> One Year
-    <input type="radio" name="expires" value="7" /> One Week
-    <input type="radio" name="expires" value="1" /> One Day
-  </div>
-  <div>
-    <input type="submit" value="Publish snippet" />
+    <input
+      type="submit"
+      value="Publish Snippet"
+      class="bg-zinc-100 text-zinc-900 font-medium rounded py-3 w-full"
+    />
   </div>
 </form>
 {{end}}

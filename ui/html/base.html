@@ -3,40 +3,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://rsms.me/" />
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-    />
-    <title>{{template "title" .}} | Snippetbox</title>
-    <style>
-      :root {
-        font-family: Inter, sans-serif;
-        font-feature-settings:
-          "liga" 1,
-          "calt" 1;
-        /* fix for Chrome */
-      }
-
-      @supports (font-variation-settings: normal) {
-        :root {
-          font-family: InterVariable, sans-serif;
-        }
-      }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/css/tailwind.css" />
+    <title>{{template "title" .}} - Snippetbox</title>
   </head>
-
-  <body class="container">
+  <body class="max-w-4xl w-full mx-auto p-6 bg-zinc-900 text-white">
     <header>
-      <h1>
+      <h1 class="text-3xl font-bold">
         <a href="/">Snippetbox</a>
       </h1>
-      {{template "nav" .}}
     </header>
-    <main>{{template "main" .}}</main>
-    <footer>
+    {{template "nav" .}}
+    <main class="mt-12">{{template "main" .}}</main>
+    <footer class="mt-6 bg-zinc-800 p-4 rounded-md text-center text-zinc-400">
       Powered by <a href="https://go.dev">Go</a> in {{.CurrentYear}}
     </footer>
   </body>
