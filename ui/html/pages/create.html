@@ -1,34 +1,23 @@
 {{define "title"}}Create a new snippet{{end}} {{define "main"}}
-<form
-  action="/snippet/create"
-  method="post"
-  class="flex flex-col space-y-4 max-w-sm w-full"
->
-  <div class="flex flex-col space-y-1">
+<form action="/snippet/create" method="post">
+  <div>
     <label for="title">Title</label>
     {{with .Form.FieldErrors.title}}
-    <label class="text-red-500 text-sm">{{.}}</label>
+    <label>{{.}}</label>
     {{end}}
-    <input
-      type="text"
-      name="title"
-      class="bg-zinc-800 rounded text-white"
-      value="{{.Form.Title}}"
-    />
+    <input type="text" name="title" value="{{.Form.Title}}" />
   </div>
-  <div class="flex flex-col space-y-1">
+  <div>
     <label for="content">Content</label>
     {{with .Form.FieldErrors.content}}
-    <label class="text-red-500 text-sm">{{.}}</label>
+    <label>{{.}}</label>
     {{end}}
-    <textarea name="content" class="bg-zinc-800 rounded text-white">
-{{.Form.Content}}</textarea
-    >
+    <textarea name="content">{{.Form.Content}}</textarea>
   </div>
-  <fieldset class="flex space-x-3">
+  <fieldset>
     <legend>Delete in:</legend>
     {{with .Form.FieldErrors.expires}}
-    <label class="text-red-500 text-sm">{{.}}</label>
+    <label>{{.}}</label>
     {{end}}
     <div>
       <input
@@ -71,11 +60,7 @@
     </div>
   </fieldset>
   <div>
-    <input
-      type="submit"
-      value="Publish Snippet"
-      class="bg-zinc-100 text-zinc-900 font-medium rounded py-3 w-full"
-    />
+    <input type="submit" value="Publish Snippet" />
   </div>
 </form>
 {{end}}

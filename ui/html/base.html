@@ -4,18 +4,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/static/css/tailwind.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <!-- <link rel="stylesheet" href="/static/css/tailwind.css" /> -->
     <title>{{template "title" .}} - Snippetbox</title>
   </head>
-  <body class="max-w-4xl w-full mx-auto p-6 bg-zinc-900 text-white">
+  <body class="container">
     <header>
-      <h1 class="text-3xl font-bold">
+      <h1>
         <a href="/">Snippetbox</a>
       </h1>
     </header>
     {{template "nav" .}}
-    <main class="mt-12">{{template "main" .}}</main>
-    <footer class="mt-6 bg-zinc-800 p-4 rounded-md text-center text-zinc-400">
+    <main>{{template "main" .}}</main>
+    <footer>
       Powered by <a href="https://go.dev">Go</a> in {{.CurrentYear}}
     </footer>
   </body>

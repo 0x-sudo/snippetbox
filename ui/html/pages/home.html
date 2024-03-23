@@ -1,19 +1,19 @@
 {{define "title"}}Home{{end}} {{define "main"}}
-<h2 class="text-xl font-bold">Latest Snippets</h2>
+<h2>Latest Snippets</h2>
 {{if .Snippets}}
-<table class="border border-zinc-700 w-full mt-6">
-  <tr class="bg-zinc-700 w-full">
-    <th class="p-4 text-left">Title</th>
-    <th class="p-4 text-left">Created</th>
-    <th class="p-4 text-left">ID</th>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Created</th>
+    <th>ID</th>
   </tr>
   {{range .Snippets}}
   <tr>
-    <td class="text-left p-2">
+    <td>
       <a href="/snippet/view/{{.ID}}">{{.Title}}</a>
     </td>
-    <td class="text-left p-2">{{humanDate .Created}}</td>
-    <td class="text-left p-2">#{{.ID}}</td>
+    <td>{{humanDate .Created}}</td>
+    <td>#{{.ID}}</td>
   </tr>
   {{end}}
 </table>

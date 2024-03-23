@@ -2,12 +2,12 @@
 
 ## Setup
 
-### Styling
-
-```bash
-pnpm i
-pnpm run build
-```
+<!-- ### Styling -->
+<!---->
+<!-- ```bash -->
+<!-- pnpm i -->
+<!-- pnpm run build -->
+<!-- ``` -->
 
 ### Set up local `mysql` database
 

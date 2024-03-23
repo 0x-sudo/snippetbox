@@ -1,12 +1,12 @@
 {{define "title"}}Snippet #{{.Snippet.ID}}{{end}} {{define "main"}} {{with
 .Snippet}}
-<div class="border border-zinc-700 rounded-md">
-  <div class="bg-zinc-700 p-4 flex items-center justify-between">
+<div>
+  <div>
     <strong>{{.Title}}</strong>
     <span>#{{.ID}}</span>
   </div>
-  <pre class="p-4"><code>{{.Content}}</code></pre>
-  <div class="flex justify-between w-full bg-zinc-700 p-4 items-center">
+  <pre><code>{{.Content}}</code></pre>
+  <div>
     <time>Created: {{humanDate .Created}}</time>
     <time>Expires: {{humanDate .Expires}}</time>
   </div>
