@@ -21,16 +21,9 @@ func main() {
 		logger: logger,
 	}
 
-	mux := http.NewServeMux()
-
-	mux.HandleFunc("GET /{$}", app.home)
-	mux.HandleFunc("GET /snippet/view/{id}", app.snippetView)
-	mux.HandleFunc("GET /snippet/create", app.snippetCreate)
-	mux.HandleFunc("POST /snippet/create", app.snippetCreatePost)
-
 	logger.Info("starting server", "addr", *addr)
 
-	err := http.ListenAndServe(*addr, mux)
+	err := http.ListenAndServe(*addr, app.routes())
 	logger.Error(err.Error())
 	os.Exit(1)
 }
