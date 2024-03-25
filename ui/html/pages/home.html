@@ -1,6 +1,22 @@
 {{define "title"}}Home{{end}} {{define "main"}}
-<hgroup>
-  <h3>Latest Snippets</h3>
-  <p>There's nothing to see here yet!</p>
-</hgroup>
-{{end}}
+<h2>Latest Snippets</h2>
+{{if .Snippets}}
+<div class="overflow-auto">
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Created</th>
+      <th>ID</th>
+    </tr>
+    {{range .Snippets}}
+    <tr>
+      <td><a href="/snippet/view/{{.ID}}">{{.Title}}</a></td>
+      <td>{{.Created}}</td>
+      <td>#{{.ID}}</td>
+    </tr>
+    {{end}}
+  </table>
+</div>
+{{else}}
+<p>There's nothing to see here... yet!</p>
+{{end}} {{end}}

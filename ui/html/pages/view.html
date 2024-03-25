@@ -1,4 +1,5 @@
-{{define "title"}}Snippet #{{.ID}}{{end}} {{define "main"}}
+{{define "title"}}Snippet #{{.Snippet.ID}}{{end}} {{define "main"}} {{with
+.Snippet}}
 <section>
   <div>
     <strong>{{.Title}}</strong>
@@ -10,4 +11,4 @@
     <time>Expires: {{.Expires}}</time>
   </div>
 </section>
-{{end}}
+{{end}} {{end}}
