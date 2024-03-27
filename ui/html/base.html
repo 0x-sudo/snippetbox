@@ -26,7 +26,11 @@
         </ul>
       </nav>
     </header>
-    <main>{{template "main" .}}</main>
+    <main>
+      {{with .Flash}}
+      <div>{{.}}</div>
+      {{end}} {{template "main" .}}
+    </main>
     <footer>
       Powered by <a href="https://go.dev/">Go</a> in {{.CurrentYear}}
     </footer>
